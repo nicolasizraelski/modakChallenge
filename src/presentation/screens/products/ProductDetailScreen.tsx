@@ -17,17 +17,15 @@ const ProductDetailScreen = () => {
   const styles = makeStyles();
 
   const fcmToken = useFCMToken();
-  const { showSuccessToast, showErrorToast } = useToast();
+  const { showErrorToast } = useToast();
 
   const handlePurchase = async () => {
     if (fcmToken) {
-      await sendPurchaseUseCase(purchaseRepository, product.title, fcmToken)
-        .then(() => {
-          showSuccessToast('📦 Your order is on its way!', `We're shipping your ${product.title} now.`);
-        })
-        .catch(() => {
-          showErrorToast('❌ Error registering purchase', 'Please try again later');
-        });
+      try {
+        await sendPurchaseUseCase(purchaseRepository, product.title, fcmToken);
+      } catch (error) {
+        showErrorToast('❌ Error registering purchase', 'Please try again later');
+      }
     }
   };
 

@@ -5,6 +5,7 @@ import ProductDetailScreen from '../screens/products/ProductDetailScreen';
 import { IProduct } from '../../domain/entities/IProduct';
 import { PRODUCT_DETAIL, PRODUCT_LIST } from '../../shared/constants/routeNames';
 import { LinkingOptions, NavigationContainer } from '@react-navigation/native';
+import { useForegroundNotifications } from '../../shared/hooks/useForegroundNotifications';
 
 export type RootStackParamList = {
   ProductList: { categoryId?: string };
@@ -24,11 +25,15 @@ export const linking: LinkingOptions<RootStackParamList> = {
   },
 };
 
-export const AppNavigator = () => (
-  <NavigationContainer linking={linking}>
-    <Stack.Navigator initialRouteName={PRODUCT_LIST}>
-      <Stack.Screen name={PRODUCT_LIST} component={ProductListScreen} options={{ title: 'Products' }} />
-      <Stack.Screen name={PRODUCT_DETAIL} component={ProductDetailScreen} options={{ title: 'Product Detail' }} />
-    </Stack.Navigator>
-  </NavigationContainer>
-);
+export const AppNavigator = () => {
+  useForegroundNotifications();
+
+  return (
+    <NavigationContainer linking={linking}>
+      <Stack.Navigator initialRouteName={PRODUCT_LIST}>
+        <Stack.Screen name={PRODUCT_LIST} component={ProductListScreen} options={{ title: 'Products' }} />
+        <Stack.Screen name={PRODUCT_DETAIL} component={ProductDetailScreen} options={{ title: 'Product Detail' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
