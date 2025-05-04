@@ -32,5 +32,6 @@ export const useFCMToken = () => {
     getToken();
   }, []);
 
+  console.log('fcmToken', fcmToken);
   return fcmToken;
 };

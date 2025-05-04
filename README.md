@@ -1,14 +1,60 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Modak Challenge - React Native App
 
-# Getting Started
+This is a React Native application built with TypeScript, featuring Firebase integration and deep linking capabilities.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Prerequisites
 
-## Step 1: Start Metro
+Before you begin, ensure you have the following installed:
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- Node.js (>=18)
+- npm or yarn
+- Xcode (for iOS development)
+- Android Studio (for Android development)
+- CocoaPods (for iOS dependencies)
+- Ruby (for CocoaPods)
+- Watchman (recommended for better performance)
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Environment Setup
+
+1. Clone the repository:
+
+```sh
+git clone [repository-url]
+cd ModakChallenge
+```
+
+2. Install dependencies:
+
+```sh
+# Using npm
+npm install
+
+# OR using Yarn
+yarn install
+```
+
+3. Install iOS dependencies:
+
+```sh
+cd ios
+bundle install
+bundle exec pod install
+cd ..
+```
+
+## Configuration Files
+
+The following files are required but not included in the repository (they are in .gitignore). You will receive these files via email:
+
+- `ios/GoogleService-Info.plist` - Firebase configuration for iOS
+- `android/app/google-services.json` - Firebase configuration for Android
+- `.env` - Environment variables
+
+Place these files in their respective locations before running the app.
+
+## Running the App
+
+### Start Metro Bundler
 
 ```sh
 # Using npm
@@ -18,37 +64,7 @@ npm start
 yarn start
 ```
 
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+### Run on iOS
 
 ```sh
 # Using npm
@@ -58,40 +74,116 @@ npm run ios
 yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+### Run on Android
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```sh
+# Using npm
+npm run android
 
-## Step 3: Modify your app
+# OR using Yarn
+yarn android
+```
 
-Now that you have successfully run the app, let's make changes!
+## Deep Linking Testing
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+The app supports deep linking with the following URL scheme: `modakchallenge://`
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+### Testing Deep Links on iOS
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+```sh
+xcrun simctl openurl booted "modakchallenge://productList/fragrances"
+```
 
-## Congratulations! :tada:
+### Testing Deep Links on Android
 
-You've successfully run and modified your React Native App. :partying_face:
+```sh
+adb shell am start -W -a android.intent.action.VIEW -d "modakchallenge://productList/fragrances" com.modakchallenge
+```
 
-### Now what?
+## Push Notifications
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+The app supports push notifications through Firebase Cloud Messaging (FCM). Please note:
 
-# Troubleshooting
+- Push notifications are currently only working on Android
+- iOS push notifications require an Apple Developer account and additional configuration
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+### Testing Push Notifications
 
-# Learn More
+When a product is purchased, the app will capture the notification from the backend and display a toast message. To test push notifications from outside the app, you can use the following curl command:
 
-To learn more about React Native, take a look at the following resources:
+```sh
+curl --location {PURCHASE_BACKEND_URL} \
+--header 'Content-Type: application/json' \
+--data '{
+    "productTitle": "Lemon",
+    "fcmToken": {yourFCMToken}
+}'
+```
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+To get your FCM token:
+
+1. Run the app
+2. Open the developer menu (shake device or press Cmd/Ctrl + M)
+3. Look for the FCM token in the logs
+
+## Available Scripts
+
+- `npm start` or `yarn start` - Starts the Metro bundler
+- `npm run ios` or `yarn ios` - Runs the app on iOS simulator
+- `npm run android` or `yarn android` - Runs the app on Android emulator
+- `npm test` or `yarn test` - Runs the test suite
+- `npm run lint` or `yarn lint` - Runs ESLint
+
+## Troubleshooting
+
+### iOS Issues
+
+- If you encounter CocoaPods issues, try:
+  ```sh
+  cd ios
+  pod deintegrate
+  pod install
+  cd ..
+  ```
+
+### Android Issues
+
+- Ensure you have the correct Android SDK installed
+- Make sure your emulator is running before starting the app
+- If you encounter build issues, try cleaning the project:
+  ```sh
+  cd android
+  ./gradlew clean
+  cd ..
+  ```
+
+## Project Structure
+
+- `src/` - Main source code directory
+- `ios/` - iOS native code
+- `android/` - Android native code
+- `__tests__/` - Test files
+- `.env` - Environment variables (not included in repo)
+
+## Dependencies
+
+Key dependencies used in this project:
+
+- React Native
+- TypeScript
+- Firebase
+- React Navigation
+- React Native Vector Icons
+- Axios
+- React Native Reanimated
+- React Native Gesture Handler
+
+## Contributing
+
+1. Create a new branch for your feature
+2. Make your changes
+3. Submit a pull request
+
+## License
+
+[Add your license information here]
