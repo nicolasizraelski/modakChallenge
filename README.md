@@ -19,7 +19,7 @@ Before you begin, ensure you have the following installed:
 1. Clone the repository:
 
 ```sh
-git clone [repository-url]
+git clone https://github.com/nicolasizraelski/modakChallenge.git
 cd ModakChallenge
 ```
 
@@ -126,14 +126,6 @@ To get your FCM token:
 2. Open the developer menu (shake device or press Cmd/Ctrl + M)
 3. Look for the FCM token in the logs
 
-## Available Scripts
-
-- `npm start` or `yarn start` - Starts the Metro bundler
-- `npm run ios` or `yarn ios` - Runs the app on iOS simulator
-- `npm run android` or `yarn android` - Runs the app on Android emulator
-- `npm test` or `yarn test` - Runs the test suite
-- `npm run lint` or `yarn lint` - Runs ESLint
-
 ## Troubleshooting
 
 ### iOS Issues
@@ -156,15 +148,6 @@ To get your FCM token:
   ./gradlew clean
   cd ..
   ```
-
-## Project Structure
-
-- `src/` - Main source code directory
-- `ios/` - iOS native code
-- `android/` - Android native code
-- `__tests__/` - Test files
-- `.env` - Environment variables (not included in repo)
-
 ## Dependencies
 
 Key dependencies used in this project:
@@ -177,13 +160,3 @@ Key dependencies used in this project:
 - Axios
 - React Native Reanimated
 - React Native Gesture Handler
-
-## Contributing
-
-1. Create a new branch for your feature
-2. Make your changes
-3. Submit a pull request
-
-## License
-
-[Add your license information here]
