@@ -139,7 +139,7 @@ adb shell am start -W -a android.intent.action.VIEW -d "modakchallenge://product
 The app supports push notifications through Firebase Cloud Messaging (FCM). Please note:
 
 - Push notifications are currently only working on Android
-- iOS push notifications require an Apple Developer account and additional configuration
+- iOS push notifications require an Apple Developer account and additional configuration. App shows an error to the user when trying to purchase an item from an iOS device.
 - ⚠️ **Important**: Due to server cold boot, the first notification you send might not show up immediately. Please wait 1-2 minutes after starting the app before testing purchases. After this initial period, push notifications will arrive almost instantly when buying items.
 
 ### Testing Push Notifications

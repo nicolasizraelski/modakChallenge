@@ -17,7 +17,7 @@ const ProductDetailScreen = () => {
   const styles = makeStyles();
 
   const fcmToken = useFCMToken();
-  const { showErrorToast } = useToast();
+  const { showErrorToast, showInfoToast } = useToast();
 
   const handlePurchase = async () => {
     if (fcmToken) {
@@ -27,6 +27,9 @@ const ProductDetailScreen = () => {
         showErrorToast('❌ Error registering purchase', 'Please try again later');
       }
     }
+  };
+  const handleAddToCart = async () => {
+    showInfoToast(`🛒 You added ${product.title} to your cart`, product.shippingInformation);
   };
 
   return (
@@ -50,7 +53,7 @@ const ProductDetailScreen = () => {
         </View>
 
         <CustomButton text="Buy now" onPress={handlePurchase} />
-        <CustomButton text="+ Add to Cart" onPress={() => {}} variant="secondary" />
+        <CustomButton text="+ Add to Cart" onPress={handleAddToCart} variant="secondary" />
       </View>
     </View>
   );

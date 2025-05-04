@@ -13,4 +13,5 @@ export const mapToProduct = (apiProduct: any): IProduct => ({
   discountPercentage: apiProduct.discountPercentage > 10 ? apiProduct.discountPercentage : 0,
   reviewAmount: apiProduct.reviews.length,
   availabilityStatus: apiProduct.availabilityStatus,
+  shippingInformation: apiProduct.shippingInformation,
 });

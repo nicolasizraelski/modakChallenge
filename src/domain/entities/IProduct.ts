@@ -11,4 +11,5 @@ export interface IProduct {
   discountPercentage: number;
   reviewAmount: number;
   availabilityStatus: string;
+  shippingInformation: string;
 }

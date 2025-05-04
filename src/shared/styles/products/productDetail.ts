@@ -9,8 +9,7 @@ export const makeStyles = () =>
     },
     image: {
       width: '100%',
-      height: 300,
-      marginBottom: 10,
+      height: '100%',
     },
     imageContainer: {
       backgroundColor: customColors.productImageBackground,
@@ -18,7 +17,7 @@ export const makeStyles = () =>
       width: '100%',
       alignItems: 'center',
       justifyContent: 'center',
-      height: 300,
+      height: '40%',
       marginBottom: 10,
       marginTop: 20,
     },

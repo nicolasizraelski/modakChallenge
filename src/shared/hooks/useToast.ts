@@ -31,5 +31,18 @@ export const useToast = () => {
     [insets.top]
   );
 
-  return { showErrorToast, showSuccessToast };
+  const showInfoToast = useCallback(
+    (title: string, message?: string) => {
+      Toast.show({
+        type: 'info',
+        text1: title,
+        text2: message,
+        position: 'bottom',
+        bottomOffset: insets.bottom + NOTCH_MARGIN,
+      });
+    },
+    [insets.bottom]
+  );
+
+  return { showErrorToast, showSuccessToast, showInfoToast };
 };
