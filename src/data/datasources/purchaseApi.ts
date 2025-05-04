@@ -9,8 +9,8 @@ export const purchaseApi: IPurchaseApi = {
         fcmToken,
         productTitle: productName,
       })
-      .catch(() => {
-        throw new Error('Error al enviar la compra');
+      .catch((error) => {
+        throw new Error(error.message);
       });
   },
 };

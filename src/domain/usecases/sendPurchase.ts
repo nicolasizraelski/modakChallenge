@@ -9,6 +9,6 @@ export const sendPurchaseUseCase = async (
     await purchaseRepository.sendPurchase(productName, fcmToken);
     return Promise.resolve();
   } catch (error) {
-    return Promise.resolve();
+    return Promise.reject(error);
   }
 };
