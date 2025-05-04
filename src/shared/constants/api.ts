@@ -1,5 +1,2 @@
 export const PRODUCTS_API_URL = process.env.BASE_API_URL;
 export const PURCHASE_BACKEND_URL = process.env.PURCHASE_BACKEND_URL;
-
-console.log('PRODUCTS_API_URL', PRODUCTS_API_URL);
-console.log('PURCHASE_BACKEND_URL', PURCHASE_BACKEND_URL);
