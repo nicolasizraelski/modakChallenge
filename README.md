@@ -1,6 +1,40 @@
-# Modak Challenge - React Native App
+# Modak Challenge – React Native Product Catalog App
 
-This is a React Native application built with TypeScript, featuring Firebase integration and deep linking capabilities.
+> 🚫 This app does not use Expo. Built with React Native CLI.
+
+## 🚀 Tech Stack
+
+- React Native (CLI, not Expo)
+- TypeScript
+- React Navigation
+- Axios
+- Firebase (FCM)
+- React Native Gesture Handler & Reanimated
+- DummyJSON API
+
+## ✅ Features
+
+- Product listing with infinite scroll
+- Filtering by category
+- Sorting by price or rating
+- Deep linking support (e.g., open to specific category)
+- Firebase Cloud Messaging (Android only)
+- Clean Architecture
+
+## 🧠 Architecture
+
+This app is structured using Clean Architecture principles:
+
+- `domain`: Contains business entities and interfaces (e.g., `IProduct`, `IQueryParams`)
+- `data`: Handles API logic and data transformation
+- `presentation`: Screens, components, navigation, and UI logic
+- `shared`: Reusable hooks, constants, styles, and utilities
+
+## Bonus Features
+
+- ✅ Deep linking with category pre-selection
+- ✅ Firebase Push Notifications
+- ❌ Native module for reminders (not implemented)
 
 ## Prerequisites
 
@@ -12,7 +46,7 @@ Before you begin, ensure you have the following installed:
 - Android Studio (for Android development)
 - CocoaPods (for iOS dependencies)
 - Ruby (for CocoaPods)
-- Watchman (recommended for better performance)
+- Watchman
 
 ## Environment Setup
 
@@ -148,6 +182,7 @@ To get your FCM token:
   ./gradlew clean
   cd ..
   ```
+
 ## Dependencies
 
 Key dependencies used in this project:
