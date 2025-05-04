@@ -140,13 +140,14 @@ The app supports push notifications through Firebase Cloud Messaging (FCM). Plea
 
 - Push notifications are currently only working on Android
 - iOS push notifications require an Apple Developer account and additional configuration
+- ⚠️ **Important**: Due to server cold boot, the first notification you send might not show up immediately. Please wait 1-2 minutes after starting the app before testing purchases. After this initial period, push notifications will arrive almost instantly when buying items.
 
 ### Testing Push Notifications
 
 When a product is purchased, the app will capture the notification from the backend and display a toast message. To test push notifications from outside the app, you can use the following curl command:
 
 ```sh
-curl --location {PURCHASE_BACKEND_URL} \
+curl --location {PURCHASE_BACKEND_URL}/notify-purchase \
 --header 'Content-Type: application/json' \
 --data '{
     "productTitle": "Lemon",

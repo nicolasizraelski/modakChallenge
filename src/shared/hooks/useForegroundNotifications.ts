@@ -10,10 +10,8 @@ export const useForegroundNotifications = () => {
     const messagingInstance = getMessaging(app);
 
     const unsubscribe = messagingInstance.onMessage(async (remoteMessage) => {
-      showSuccessToast(
-        remoteMessage.notification?.title ?? 'Nueva notificación',
-        remoteMessage.notification?.body ?? ''
-      );
+      console.log('remoteMessage', remoteMessage);
+      showSuccessToast(remoteMessage.notification?.title ?? 'New notification', remoteMessage.notification?.body ?? '');
     });
 
     return unsubscribe;
